@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "user.apps.UserConfig",
-    "nfc.apps.NfcConfig"
+    "nfc.apps.NfcConfig",
+    "catalogue.apps.CatalogueConfig",
+    "store.apps.StoreConfig",
 ]
 
 MIDDLEWARE = [
