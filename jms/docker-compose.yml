@@ -5,7 +5,7 @@ services:
     hostname: db
     image: postgres
     volumes:
-      - jms_postgres:/var/lib/postgresql/data
+      - jms_postgres:/var/lib/postgresql/18/data
     env_file:
       - .env
     ports:
@@ -14,12 +14,16 @@ services:
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASS}
+    networks:
+      - arjan-network
     restart: unless-stopped
 
   redis:
     image: redis
     volumes:
       - jms_redis:/data
+    networks:
+      - arjan-network
     restart: unless-stopped
 
 volumes:
@@ -27,5 +31,5 @@ volumes:
   jms_redis:
 
 networks:
-  open_network:
+  arjan-network:
    driver: bridge

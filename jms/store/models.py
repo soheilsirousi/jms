@@ -20,6 +20,10 @@ class City(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = _("city")
+        verbose_name_plural = _("cities")
+
 
 class Store(models.Model):
     uuid = models.UUIDField(default=uuid4, editable=False, unique=True)
