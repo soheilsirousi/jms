@@ -4,7 +4,7 @@ from nfc.models import NFCTag, ProductTag
 
 @admin.register(NFCTag)
 class NFCTagAdmin(admin.ModelAdmin):
-    list_display = ("number", "serial_number", "is_free")
+    list_display = ("serial_number", "number", "is_free")
 
 
 @admin.register(ProductTag)

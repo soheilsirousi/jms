@@ -8,4 +8,4 @@ class ProductCategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ("store", "name", "category", "is_available")
+    list_display = ("uuid", "store", "name", "category", "is_available")

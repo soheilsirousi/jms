@@ -6,7 +6,7 @@ from catalogue.models import Product
 
 class NFCTag(models.Model):
     number = models.PositiveIntegerField(verbose_name=_("number"), null=False, blank=False)
-    serial_number = models.CharField(max_length=100, verbose_name=_("serial_number"), null=False, blank=False)
+    serial_number = models.CharField(max_length=100, verbose_name=_("serial_number"), null=False, blank=False, unique=True)
     is_free = models.BooleanField(default=True, verbose_name=_("is free"), null=False, blank=False)
 
     def __str__(self):

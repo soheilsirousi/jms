@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "nfc.apps.NfcConfig",
     "catalogue.apps.CatalogueConfig",
     "store.apps.StoreConfig",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [

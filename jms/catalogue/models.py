@@ -1,5 +1,5 @@
 from django.db import models
-
+from uuid import uuid4
 from catalogue.utils import product_image_upload_path
 from store.models import Store
 
@@ -17,6 +17,7 @@ class ProductCategory(models.Model):
         verbose_name_plural = "product categories"
 
 class Product(models.Model):
+    uuid = models.UUIDField(default=uuid4, editable=False, unique=True)
     store = models.ForeignKey(Store, related_name='products', on_delete=models.CASCADE)
     name = models.CharField(max_length=100, null=False, blank=False)
     category = models.ForeignKey(ProductCategory, related_name='products', on_delete=models.CASCADE)
