@@ -17,4 +17,5 @@ class ProductRetrieveAPI(APIView):
             data = generate_response(success=True, content=serializer.data)
             return Response(data, status=status.HTTP_200_OK)
 
-        return Response(status=status.HTTP_404_NOT_FOUND)
+        data = generate_response(success=False, error="Product not found")
+        return Response(data, status=status.HTTP_404_NOT_FOUND)

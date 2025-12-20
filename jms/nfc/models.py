@@ -5,12 +5,13 @@ from catalogue.models import Product
 
 
 class NFCTag(models.Model):
-    number = models.PositiveIntegerField(verbose_name=_("number"), null=False, blank=False)
     serial_number = models.CharField(max_length=100, verbose_name=_("serial_number"), null=False, blank=False, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("created_at"))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_("updated_at"))
     is_free = models.BooleanField(default=True, verbose_name=_("is free"), null=False, blank=False)
 
     def __str__(self):
-        return f'Tag number: {self.number}'
+        return self.serial_number
 
     class Meta:
         verbose_name = _("NFC Tag")
