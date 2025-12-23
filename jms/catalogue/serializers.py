@@ -2,7 +2,7 @@ from rest_framework import serializers
 from catalogue.models import Product
 
 
-class ProductRetrieveSerializer(serializers.ModelSerializer):
+class ProductSerializer(serializers.ModelSerializer):
     store = serializers.CharField(source="store.name", read_only=True)
     category = serializers.CharField(source="category.name", read_only=True)
 

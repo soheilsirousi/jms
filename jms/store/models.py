@@ -44,7 +44,7 @@ class Store(models.Model):
 
 
 class StoreUser(models.Model):
-    user = models.ForeignKey(CustomUser, null=False, blank=False, on_delete=models.RESTRICT, related_name='stores')
+    user = models.OneToOneField(CustomUser, null=False, blank=False, on_delete=models.RESTRICT, related_name='stores')
     store = models.ForeignKey(Store, null=False, blank=False, on_delete=models.RESTRICT, related_name='users')
     is_owner = models.BooleanField(default=False)
     created_time = models.DateTimeField(auto_now_add=True)
@@ -54,5 +54,24 @@ class StoreUser(models.Model):
     def __str__(self):
         return str(self.user)
 
+    @classmethod
+    def check_user_permissions(cls, store, user):
+        has_record = cls.objects.filter(store=store, user=user).exists()
+        return has_record
 
+    @classmethod
+    def check_user_ownership(cls, store, user):
+        has_record = cls.objects.filter(store=store, user=user).first()
+        if not has_record:
+            return False
+
+        return has_record.is_owner
+
+    @classmethod
+    def get_user_store(cls, user):
+        if user.is_authenticated:
+            if obj := cls.objects.filter(user=user).first():
+                return obj.store
+
+        return None
 
